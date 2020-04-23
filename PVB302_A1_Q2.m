@@ -6,14 +6,14 @@ clear; % Testing only
 
 % Question 2 - Coupled Einstein Solids
 % Paramaters:  
-Na = 250; 
-Nb = 250;
+Na = 150; % Change these values
+Nb = 350; % Change These values
 qtotal = Na + Nb;
 kb = 1.3806 * 10^-23; 
 
 % Define Arrays:
-qA = 0:1:qtotal;    %0 - Na incremnting by 1
-qB = qtotal:-1:0;   %Nb - 0 incremnting by 1
+qA = 0:1:qtotal;    % 0 - Na incremnting by 1
+qB = qtotal:-1:0;   % Nb - 0 incremnting by 1
 
 % Define Arrays with preallocated size for efficiency
 OmegaA= zeros(1,qtotal+1);
@@ -42,21 +42,25 @@ while n < qtotal+1
     n = n + 1;
 end
 
-%& Plotting %%
-
+% Plotting 
 % Multiplicty of Qa for a Qtotal of x
 figure
 plot(qA, OmegaTotal);
 xlabel('qA');
 ylabel('Multiplicty');
-title(['Multiplicty of Qa for a Qtotal of ', num2str(qtotal)]);
+%title(['Multiplicty of qA for a Qtotal of ' num2str(qtotal), ' Where Na = Nb']);
+title({'Multiplicty of qA for a Qtotal of 500' , ' Where Na < Nb'});
 
 % Entropy in a System with a Qtotal of x
 figure
-plot(qA,Sa,qA,Sb,qA,Stotal);
+p1 = plot(qA,Sa); hold on; L1 = 'Sa';
+p2 = plot(qA, Sb); hold on; L2 = 'Sb';
+p3 = plot(qA, Stotal); L3 = 'Stotal';
 xlabel('qA');
 ylabel('Entropy (In units of Kb)');
-title(['Entropy in a System with Qtotal of ', num2str(qtotal)]);
+%title(['Entropy in a System with Qtotal of ', num2str(qtotal),' Where Na = Nb']);
+title({'Entropy in a System with Qtotal of 500',' Where Na < Nb'});
+legend([p1;p2;p3], L1,L2,L3);
 
 
 % Omega Function Definition
